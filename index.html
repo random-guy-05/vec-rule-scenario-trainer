@@ -63,6 +63,7 @@
     .toolbar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
     .topic { display: grid; gap: 5px; min-width: min(100%, 300px); }
     .topic > label { font-size: .82rem; font-weight: 700; }
+    .language-help { color: var(--muted); font-size: .76rem; }
     select { max-width: 100%; padding: 10px 36px 10px 12px; border: 1px solid var(--line); border-radius: 9px; background: var(--surface); color: var(--ink); font: inherit; }
     .progress { min-width: 130px; color: var(--muted); font-size: .92rem; text-align: right; }
     .progress strong { color: var(--ink); }
@@ -110,26 +111,37 @@
 <body>
   <main class="shell">
     <header>
-      <div class="eyebrow">Virtual Embryo Challenge · Practice</div>
-      <h1>Rule Scenario Trainer</h1>
-      <p>Try concrete cases about data eligibility, Agent Team runs, final-phase submissions, and the Generality Award. Each answer points back to the official rule.</p>
+      <div class="eyebrow" data-i18n="eyebrow">Virtual Embryo Challenge · Practice</div>
+      <h1 id="page-title" data-i18n="title">Rule Scenario Trainer</h1>
+      <p data-i18n="lede">Try concrete cases about data eligibility, Agent Team runs, final-phase submissions, and the Generality Award. Each answer points back to the official rule.</p>
     </header>
 
     <aside class="notice" aria-label="Important note">
-      <strong>Learning aid, not an organiser ruling.</strong> Rules can change. This set was checked against the official pages on 14 October 2026; open the cited source before acting on an edge case. Your answers stay in this browser and are not sent anywhere.
+      <strong data-i18n="noticeTitle">Learning aid, not an organiser ruling.</strong>
+      <span data-i18n="noticeBody">Rules can change. This set was checked against the official pages on 14 October 2026; open the cited source before acting on an edge case. Your answers stay in this browser and are not sent anywhere.</span>
     </aside>
 
     <section class="card" aria-labelledby="quiz-title">
       <div class="toolbar">
         <div class="topic">
-          <label for="topic-filter">Practice topic</label>
+          <label for="topic-filter" data-i18n="topic">Practice topic</label>
           <select id="topic-filter">
-            <option value="all">All topics · 30 scenarios</option>
-            <option value="external">Data eligibility · 12</option>
-            <option value="agent">Agent Team · 8</option>
-            <option value="phase">Phases and submissions · 6</option>
-            <option value="generality">Generality Award · 4</option>
+            <option value="all" data-i18n="allTopics">All topics · 33 scenarios</option>
+            <option value="external" data-i18n="externalTopic">Data eligibility · 12</option>
+            <option value="agent" data-i18n="agentTopic">Agent Team · 8</option>
+            <option value="phase" data-i18n="phaseTopic">Phases and submissions · 6</option>
+            <option value="scores" data-i18n="scoresTopic">Score use and evaluation · 3</option>
+            <option value="generality" data-i18n="generalityTopic">Generality Award · 4</option>
           </select>
+        </div>
+        <div class="topic language-picker">
+          <label for="language" data-i18n="language">Language</label>
+          <select id="language" aria-describedby="language-help">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="zh-CN">简体中文</option>
+          </select>
+          <span class="language-help" id="language-help" data-i18n="languageHelp">Changing language restarts this practice round.</span>
         </div>
         <div class="progress" id="progress" aria-live="polite"></div>
       </div>
@@ -140,32 +152,33 @@
         <h2 id="quiz-title"></h2>
         <p class="prompt" id="prompt"></p>
         <fieldset id="choices">
-          <legend>Choose the best answer</legend>
+          <legend data-i18n="chooseAnswer">Choose the best answer</legend>
         </fieldset>
         <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
         <div class="controls">
-          <button id="restart" type="button">Restart topic</button>
-          <button id="action" class="primary" type="button" disabled>Check answer</button>
+          <button id="restart" type="button" data-i18n="restart">Restart topic</button>
+          <button id="action" class="primary" type="button" disabled data-i18n="check">Check answer</button>
         </div>
       </div>
 
       <div class="summary" id="summary" aria-live="polite">
-        <div class="eyebrow">Practice complete</div>
+        <div class="eyebrow" data-i18n="complete">Practice complete</div>
         <div class="score" id="final-score"></div>
         <p id="summary-copy"></p>
-        <button id="again" class="primary" type="button">Practice again</button>
+        <button id="again" class="primary" type="button" data-i18n="again">Practice again</button>
       </div>
 
       <div class="source-list">
-        <strong>Official sources</strong>
-        <span><a href="https://virtualembryo.ai/challenge/rules" target="_blank" rel="noopener noreferrer">Challenge Rules</a> · §§9–14</span>
-        <span><a href="https://virtualembryo.ai/challenge/data" target="_blank" rel="noopener noreferrer">Challenge Data</a> · released stages and Task 3 replicates</span>
-        <span><a href="https://virtualembryo.ai/challenge/tasks" target="_blank" rel="noopener noreferrer">Challenge Tasks</a> · task and split overview</span>
+        <strong data-i18n="sourceHeading">Official sources</strong>
+        <span><a href="https://virtualembryo.ai/challenge/rules" target="_blank" rel="noopener noreferrer" data-i18n="rulesSource">Challenge Rules</a> <span data-i18n="rulesDetails">· §§9–14</span></span>
+        <span><a href="https://virtualembryo.ai/challenge/data" target="_blank" rel="noopener noreferrer" data-i18n="dataSource">Challenge Data</a> <span data-i18n="dataDetails">· released stages and Task 3 replicates</span></span>
+        <span><a href="https://virtualembryo.ai/challenge/tasks" target="_blank" rel="noopener noreferrer" data-i18n="tasksSource">Challenge Tasks</a> <span data-i18n="tasksDetails">· task and split overview</span></span>
       </div>
     </section>
-    <footer>Offline-first · no account · no analytics · no dependency · MIT licensed</footer>
+    <footer data-i18n="footer">Offline-first · no account · no analytics · no dependency · MIT licensed</footer>
   </main>
 
+  <script src="./translations.js"></script>
   <script>
     "use strict";
     const RULES = "https://virtualembryo.ai/challenge/rules";
@@ -374,10 +387,10 @@
       },
       {
         topic: "phase", label: "Phases and submissions",
-        title: "Does the Challenge ever distribute test ground truth after the final phase?",
-        prompt: "Validation answers are released at the start of the final phase; test answers are different.",
+        title: "At the final-phase transition, are test-set answers released along with the validation answers?",
+        prompt: "Validation answers are released at the start of the final phase; test targets are different.",
         choices: ["Yes. Both validation and test answers are released in P3.", "No. Validation answers are released at the phase transition; test ground truth remains hidden.", "Only to teams in the Agent Team track."], answer: 1,
-        explain: "At the final-phase transition the validation answers are released and ranking moves to hidden test sets. Test ground truth is never distributed.",
+        explain: "At the final-phase transition, validation answers are released and ranking moves to hidden test sets. Test inputs may be released without labels; the hidden test ground truth remains unavailable for ranking.",
         source: "Challenge Tasks · ground-truth boundary", url: TASKS
       },
       {
@@ -411,10 +424,33 @@
         choices: ["State that the team wants consideration and describe what is shared across tasks, what differs, and where the boundary is.", "Only list the tasks; the judges infer architecture from scores.", "Nothing. The award is assigned automatically to the highest total score."], answer: 0,
         explain: "The team must say it wants consideration and describe the shared architecture: what is common, what differs, and where the boundary between tasks falls. Eligibility is judged on the method summary, not scores alone.",
         source: "Challenge Rules §14 · Generality Award", url: RULES
+      },
+      {
+        topic: "scores", label: "Score use and evaluation",
+        title: "A participant changes a model parameter, checks the returned score, and tries another value. Is that ordinary leaderboard work?",
+        prompt: "They use the scores to choose among predictions, not to reconstruct the hidden target.",
+        choices: ["Yes. Trying parameter values and using scores to choose among predictions is permitted.", "No. Any use of a returned score for model selection is prohibited.", "Only if the first score is higher than the floor."], answer: 0,
+        explain: "The rules allow trying parameter values and using returned scores to choose among predictions. The boundary is crossed when score returns are used to solve for a hidden-target property and that recovered value is used to build a prediction.",
+        source: "Challenge Rules §10 · use of returned scores", url: RULES
+      },
+      {
+        topic: "scores", label: "Score use and evaluation",
+        title: "A team differences several scores to reconstruct a hidden target value, then builds its next prediction from that recovered value. Is that allowed?",
+        prompt: "The team uses the published skill map to convert the score pattern into an estimate of the hidden truth.",
+        choices: ["Yes. Every score-return strategy is allowed because the server publishes the scores.", "No. Recovering a hidden-target property from score returns and using it to construct a prediction is prohibited.", "Yes, if the final score is better than the earlier submissions."], answer: 1,
+        explain: "The rules prohibit using score returns, score differences, or an inverted skill map to recover a property of a held-out target and then build a submission from it. Returned scores may guide selection, not supply prediction content.",
+        source: "Challenge Rules §10 · returned scores and held-out data", url: RULES
+      },
+      {
+        topic: "scores", label: "Score use and evaluation",
+        title: "A team submits two completed candidate predictions and selects the one with the better returned score. It does not derive new target values from the scores. Is that permitted?",
+        prompt: "The score affects which candidate is chosen, but not the contents of either candidate.",
+        choices: ["Yes. Scores may be used to choose among predictions; the hidden target must not be recovered and put into a prediction.", "No. A team may never compare scores from its own submissions.", "Only if both predictions have the same score."], answer: 0,
+        explain: "The official boundary is whether the hidden truth enters the prediction's content or only its selection. Choosing between completed predictions by their scores is allowed; reconstructing the target and using the recovered value to create the prediction is not.",
+        source: "Challenge Rules §10 · use of returned scores", url: RULES
       }
     ];
 
-    const labels = { external: "External data", agent: "Agent Team", phase: "Phases and submissions", generality: "Generality Award" };
     const filter = document.getElementById("topic-filter");
     const panel = document.getElementById("question-panel");
     const summary = document.getElementById("summary");
@@ -426,10 +462,84 @@
     const choices = document.getElementById("choices");
     const feedback = document.getElementById("feedback");
     const action = document.getElementById("action");
+    const language = document.getElementById("language");
+    const englishUI = {
+      documentTitle: "VEC Rule Scenario Trainer",
+      description: "An offline scenario quiz for Virtual Embryo Challenge rules about external data, Agent Team runs, P3 submissions and the Generality Award.",
+      eyebrow: "Virtual Embryo Challenge · Practice",
+      title: "Rule Scenario Trainer",
+      lede: "Try concrete cases about data eligibility, Agent Team runs, final-phase submissions, and the Generality Award. Each answer points back to the official rule.",
+      noticeLabel: "Important note",
+      noticeTitle: "Learning aid, not an organiser ruling.",
+      noticeBody: "Rules can change. This set was checked against the official pages on 14 October 2026; open the cited source before acting on an edge case. Your answers stay in this browser and are not sent anywhere. The Spanish and Simplified Chinese editions are community first editions and have not had independent native-speaker review; the linked official pages remain authoritative.",
+      language: "Language",
+      languageHelp: "Changing language restarts this practice round.",
+      topic: "Practice topic",
+      allTopics: "All topics · 33 scenarios",
+      externalTopic: "Data eligibility · 12",
+      agentTopic: "Agent Team · 8",
+      phaseTopic: "Phases and submissions · 6",
+      scoresTopic: "Score use and evaluation · 3",
+      generalityTopic: "Generality Award · 4",
+      chooseAnswer: "Choose the best answer",
+      restart: "Restart topic",
+      check: "Check answer",
+      next: "Next scenario",
+      seeResult: "See result",
+      complete: "Practice complete",
+      again: "Practice again",
+      correct: "That's right.",
+      notQuite: "Not quite. Best answer:",
+      openSource: "Open source:",
+      sourceHeading: "Official sources",
+      rulesSource: "Challenge Rules",
+      rulesDetails: "· §§9–14",
+      dataSource: "Challenge Data",
+      dataDetails: "· released stages and Task 3 replicates",
+      tasksSource: "Challenge Tasks",
+      tasksDetails: "· task and split overview",
+      footer: "Offline-first · no account · no analytics · no dependency · MIT licensed",
+      scenario: "Scenario",
+      progress: "{current} of {total} · {percent}% complete",
+      progressDone: "{total} of {total} · complete",
+      perfect: "Excellent. Keep the official sources close: these scenarios summarize the current page text, and organisers can clarify edge cases.",
+      review: "Review the explanations and sources for the scenarios you missed. This practice score is not an official eligibility decision.",
+      topicLabel: { external: "Data eligibility", agent: "Agent Team", phase: "Phases and submissions", scores: "Score use and evaluation", generality: "Generality Award" }
+    };
+    let locale = "en";
     let deck = [];
     let cursor = 0;
     let score = 0;
     let checked = false;
+
+    function ui() {
+      return locale === "en" ? englishUI : (window.VEC_RULE_TRAINER_TRANSLATIONS?.[locale]?.ui || englishUI);
+    }
+
+    function tr(key, values = {}) {
+      let message = ui()[key] ?? englishUI[key] ?? key;
+      for (const [name, value] of Object.entries(values)) {
+        message = message.replaceAll(`{${name}}`, String(value));
+      }
+      return message;
+    }
+
+    function translatedScenario(item) {
+      if (locale === "en") return item;
+      const translation = window.VEC_RULE_TRAINER_TRANSLATIONS?.[locale]?.scenarios?.[scenarios.indexOf(item)];
+      return translation ? { ...item, ...translation } : item;
+    }
+
+    function applyLocale() {
+      document.documentElement.lang = locale;
+      document.title = tr("documentTitle");
+      document.querySelector('meta[name="description"]').content = tr("description");
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        element.textContent = tr(element.dataset.i18n);
+      });
+      document.querySelector(".notice").setAttribute("aria-label", tr("noticeLabel"));
+      document.querySelector("#choices legend").textContent = tr("chooseAnswer");
+    }
 
     function shuffle(items) {
       const copy = [...items];
@@ -453,18 +563,19 @@
 
     function render() {
       const item = deck[cursor];
-      category.textContent = item.label;
-      title.textContent = `Scenario ${cursor + 1}`;
-      prompt.textContent = item.title + " " + item.prompt;
-      progress.innerHTML = `<strong>${cursor + 1} of ${deck.length}</strong> · ${Math.round((cursor / deck.length) * 100)}% complete`;
+      const content = translatedScenario(item);
+      category.textContent = (ui().topicLabel || englishUI.topicLabel)[item.topic] || item.label;
+      title.textContent = `${tr("scenario")} ${cursor + 1}`;
+      prompt.textContent = content.title + " " + content.prompt;
+      progress.innerHTML = tr("progress", { current: `<strong>${cursor + 1}</strong>`, total: deck.length, percent: Math.round((cursor / deck.length) * 100) });
       progressBar.style.width = `${(cursor / deck.length) * 100}%`;
       feedback.className = "feedback";
       feedback.replaceChildren();
       checked = false;
       action.disabled = true;
-      action.textContent = "Check answer";
+      action.textContent = tr("check");
       choices.querySelectorAll(".choice").forEach(node => node.remove());
-      item.choices.forEach((choice, index) => {
+      content.choices.forEach((choice, index) => {
         const wrapper = document.createElement("div");
         wrapper.className = "choice";
         const input = document.createElement("input");
@@ -484,6 +595,7 @@
 
     function showAnswer() {
       const item = deck[cursor];
+      const content = translatedScenario(item);
       const selected = choices.querySelector("input[name='answer']:checked");
       if (!checked && !selected) return;
       if (!checked) {
@@ -498,17 +610,17 @@
         });
         feedback.className = `feedback visible ${correct ? "good" : "bad"}`;
         const heading = document.createElement("strong");
-        heading.textContent = correct ? "That's right." : `Not quite. Best answer: ${item.choices[item.answer]}`;
+        heading.textContent = correct ? tr("correct") : `${tr("notQuite")} ${content.choices[item.answer]}`;
         const explanation = document.createElement("p");
-        explanation.textContent = item.explain;
+        explanation.textContent = content.explain;
         const source = document.createElement("a");
         source.href = item.url;
         source.target = "_blank";
         source.rel = "noopener noreferrer";
-        source.textContent = `Open source: ${item.source}`;
+        source.textContent = `${tr("openSource")} ${item.source}`;
         feedback.append(heading, explanation, source);
         action.disabled = false;
-        action.textContent = cursor === deck.length - 1 ? "See result" : "Next scenario";
+        action.textContent = cursor === deck.length - 1 ? tr("seeResult") : tr("next");
         source.focus({ preventScroll: true });
       } else if (cursor < deck.length - 1) {
         cursor++;
@@ -523,10 +635,8 @@
       panel.hidden = true;
       summary.classList.add("visible");
       document.getElementById("final-score").textContent = `${score}/${deck.length}`;
-      document.getElementById("summary-copy").textContent = score === deck.length
-        ? "Excellent. Keep the official sources close: these scenarios summarize the current page text, and organisers can clarify edge cases."
-        : "Review the explanations and sources for the scenarios you missed. This practice score is not an official eligibility decision.";
-      progress.innerHTML = `<strong>${deck.length} of ${deck.length}</strong> · complete`;
+      document.getElementById("summary-copy").textContent = score === deck.length ? tr("perfect") : tr("review");
+      progress.innerHTML = tr("progressDone", { total: deck.length });
       progressBar.style.width = "100%";
       summary.scrollIntoView({ block: "nearest", behavior: "smooth" });
     }
@@ -535,6 +645,12 @@
     document.getElementById("restart").addEventListener("click", start);
     document.getElementById("again").addEventListener("click", start);
     filter.addEventListener("change", start);
+    language.addEventListener("change", () => {
+      locale = language.value;
+      applyLocale();
+      start();
+    });
+    applyLocale();
     start();
   </script>
 </body>
