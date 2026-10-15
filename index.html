@@ -506,7 +506,9 @@
       review: "Review the explanations and sources for the scenarios you missed. This practice score is not an official eligibility decision.",
       topicLabel: { external: "Data eligibility", agent: "Agent Team", phase: "Phases and submissions", scores: "Score use and evaluation", generality: "Generality Award" }
     };
-    let locale = "en";
+    const requestedLocale = new URLSearchParams(window.location.search).get("lang");
+    let locale = ["en", "es", "zh-CN"].includes(requestedLocale) ? requestedLocale : "en";
+    language.value = locale;
     let deck = [];
     let cursor = 0;
     let score = 0;

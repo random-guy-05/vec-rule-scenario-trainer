@@ -6,7 +6,7 @@ An offline, no-dependency practice quiz for Virtual Embryo Challenge rules that 
 
 ## Use
 
-Open the [hosted practice quiz](https://random-guy-05.github.io/vec-rule-scenario-trainer/) or download both `index.html` and `translations.js` into the same folder and open `index.html`. Choose a language and a topic, then answer the scenarios. Changing language starts a fresh practice round. The app works offline after download, stores no answers, and sends no data. It has no build step, package installation, login, analytics, or server dependency.
+Open the [hosted practice quiz](https://random-guy-05.github.io/vec-rule-scenario-trainer/) or download both `index.html` and `translations.js` into the same folder and open `index.html`. Choose a language and a topic, then answer the scenarios. The hosted page also accepts `?lang=es` or `?lang=zh-CN` to open directly in that language; English is the default. Changing language starts a fresh practice round. The app works offline after download, stores no answers, and sends no data. It has no build step, package installation, login, analytics, or server dependency.
 
 ## Scope and maintenance
 
